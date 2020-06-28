@@ -1,4 +1,4 @@
-import 'package:DartSmart/login.dart';
+import 'package:DartSmart/Authentication/login.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
