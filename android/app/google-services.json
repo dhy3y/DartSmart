@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "932034676403",
+    "firebase_url": "https://dart-smart.firebaseio.com",
+    "project_id": "dart-smart",
+    "storage_bucket": "dart-smart.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932034676403:android:fd602d3ea8fc10e56c52c6",
+        "android_client_info": {
+          "package_name": "com.example.DartSmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932034676403-5g4sr3panfej6bt1aor4atmjnijnjhje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRH0LlWlJvFOn1rUfG1jxlXx8SfiJAuJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932034676403-5g4sr3panfej6bt1aor4atmjnijnjhje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
