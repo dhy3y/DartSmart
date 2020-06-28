@@ -118,7 +118,12 @@ class _LoginScreenState extends State<LoginScreen> {
             children: <Widget>[
               new Icon(Icons.phone_android, size: 150.0, color: Colors.black),
               TextField(
+                decoration: InputDecoration(hintText: 'Enter Unique ID'),
+                textAlign: TextAlign.center,
+              ),
+              TextField(
                 decoration: InputDecoration(hintText: 'Enter phone number with country code'),
+                textAlign: TextAlign.center,
                 onChanged: (value) {
                   this.phoneNo = value;
                 },
