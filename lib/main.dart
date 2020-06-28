@@ -1,4 +1,5 @@
 import 'package:DartSmart/article_detail.dart';
+import 'package:DartSmart/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,12 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: ArticleDetail(),
+      home: Home(),
     );
   }
 }
