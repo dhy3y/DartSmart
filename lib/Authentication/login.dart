@@ -1,4 +1,5 @@
 import 'package:DartSmart/article.dart';
+import 'package:DartSmart/home.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -108,6 +109,16 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: new AppBar(
         title: new Text('Authentication'),
+        backgroundColor: Colors.black,
+        leading: IconButton(
+          icon:const Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.push(
+              context,
+              new MaterialPageRoute(builder: (context) => new Home()),
+            );
+          },
+        )
       ),
       
       body: new Center(
@@ -134,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Text('Verify'),
                   textColor: Colors.white,
                   elevation: 7.0,
-                  color: Colors.blue),
+                  color: Colors.black),
             ],
           ),
         ),

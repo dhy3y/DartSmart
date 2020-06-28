@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Corona Times"),
+        backgroundColor: Colors.black,
         actions: <Widget>[
           FlatButton.icon(
             onPressed: () {
@@ -29,8 +30,15 @@ class _HomePageState extends State<HomePage> {
                 new MaterialPageRoute(builder: (context) => new Login()),
               );
             },
-            icon: const Icon(Icons.person),
-            label: const Text('Login!'),
+            icon: const Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+            color: Colors.black,
+            label: const Text(
+              'Login!',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),
