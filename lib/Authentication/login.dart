@@ -1,5 +1,6 @@
 import 'package:DartSmart/article.dart';
 import 'package:DartSmart/home.dart';
+import 'package:DartSmart/home_feed.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -90,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   FirebaseAuth.instance.currentUser().then((user) {
                     if (user != null) {
-                      Navigator.push(context, new MaterialPageRoute(builder: (context) => new Article()),
+                      Navigator.push(context, new MaterialPageRoute(builder: (context) => new HomeFeed()),
               );
                     } else {
                       Navigator.of(context).pop();

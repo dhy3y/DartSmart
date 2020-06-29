@@ -1,44 +1,100 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class ArticleDetail extends StatelessWidget {
+class ArticleDetail extends StatefulWidget {
+  final DocumentSnapshot article;
+
+  ArticleDetail({this.article});
+
+  @override
+  _ArticleDetailState createState() => _ArticleDetailState();
+}
+
+class _ArticleDetailState extends State<ArticleDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffe8e4c9),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/backg.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Stack(
+      backgroundColor: Colors.grey[300],
+      body: SafeArea(
+        child: Column(
           children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: Image.asset(
+                    'assets/images/title-lines.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  child: Text(
+                    'Article',
+                    style: GoogleFonts.vt323(fontSize: 40),
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: Image.asset(
+                    'assets/images/title-lines.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
             Container(
-              margin: EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    "Coronavirus Update!".toUpperCase(),
-                    style: TextStyle(
-                      fontFamily: 'Subway',
-                      fontSize: 35,
+              margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/backg.jpg"),
+                  fit: BoxFit.cover,
+                ),
+                border: Border.all(color: Colors.black, width: 5),
+              ),
+              child: Container(
+                height: MediaQuery.of(context).size.height/1.2,
+                child: SingleChildScrollView(
+                  child: Container(
+                    margin:
+                        EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          widget.article.data['title'].toUpperCase(),
+                          style: TextStyle(
+                            fontFamily: 'Subway',
+                            fontSize: 35,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          '(by ${widget.article.data['name']})',
+                          style: TextStyle(
+                            fontFamily: 'Subway',
+                            fontSize: 20,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                        Image.asset('assets/images/divider.png'),
+                        Text(
+                          widget.article.data['description'],
+                          style: TextStyle(
+                            fontFamily: 'Chenier',
+                            fontSize: 25,
+                          ),
+                          textAlign: TextAlign.justify,
+                        ),
+                      ],
                     ),
-                    textAlign: TextAlign.left,
                   ),
-                  Image.asset('assets/images/divider.png'),
-                  Text(
-                    "Aliquip sunt occaecat pariatur esse adipisicing sunt deserunt idsunt pariatur cupidatat eu incididunt est eiusmod ad irure aute ut dolor tempor nulla pariatur ex fugiat ut quis adipisicing nostrud consequat ut duis proident. Aliquip sunt occaecat pariatur esse adipisicing sunt deserunt idsunt pariatur cupidatat eu incididunt est eiusmod ad irure aute ut dolor tempor nulla pariatur ex fugiat ut quis adipisicing nostrud consequat ut duis proident",
-                    style: TextStyle(
-                      fontFamily: 'Chenier',
-                      fontSize: 25,
-                    ),
-                    textAlign: TextAlign.justify,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                ],
+                ),
               ),
             ),
           ],
