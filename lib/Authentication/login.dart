@@ -3,6 +3,7 @@ import 'package:DartSmart/home.dart';
 import 'package:DartSmart/home_feed.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -77,8 +78,21 @@ class _LoginScreenState extends State<LoginScreen> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return new AlertDialog(
-            title: Text('Enter OTP'),
+            title: Text(
+              'Enter OTP',
+              style: GoogleFonts.vt323(fontSize: 20),
+            ),
             content: TextField(
+              decoration: InputDecoration(
+                hintText: 'OTP',
+                hintStyle: GoogleFonts.vt323(fontSize: 20),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+              ),
+              cursorColor: Colors.black,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.vt323(fontSize: 20),
               keyboardType: TextInputType.number,
               onChanged: (value) {
                 this.smsCode = value;
@@ -87,12 +101,19 @@ class _LoginScreenState extends State<LoginScreen> {
             contentPadding: EdgeInsets.all(10.0),
             actions: <Widget>[
               new FlatButton(
-                child: Text('Done!'),
+                child: Text(
+                  'Done!',
+                  style: GoogleFonts.vt323(fontSize: 20),
+                ),
+                textColor: Colors.black,
                 onPressed: () {
                   FirebaseAuth.instance.currentUser().then((user) {
                     if (user != null) {
-                      Navigator.push(context, new MaterialPageRoute(builder: (context) => new HomeFeed()),
-              );
+                      Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new HomeFeed()),
+                      );
                     } else {
                       Navigator.of(context).pop();
                       signIn();
@@ -107,48 +128,94 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: new AppBar(
-        title: new Text('Authentication'),
-        backgroundColor: Colors.black,
-        leading: IconButton(
-          icon:const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.push(
-              context,
-              new MaterialPageRoute(builder: (context) => new Home()),
-            );
-          },
-        )
-      ),
-      
-      body: new Center(
-        child: Container(
-          padding: EdgeInsets.all(25.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Icon(Icons.phone_android, size: 150.0, color: Colors.black),
-              TextField(
-                decoration: InputDecoration(hintText: 'Enter Unique ID'),
-                textAlign: TextAlign.center,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.grey[300],
+        body: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width / 2.8,
+                  child: Image.asset(
+                    'assets/images/title-lines.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Container(
+                  height: 50,
+                  child: Text(
+                    'Login',
+                    style: GoogleFonts.vt323(fontSize: 40),
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width / 2.8,
+                  child: Image.asset(
+                    'assets/images/title-lines.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(25.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset('assets/images/login.png'),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Enter Unique ID',
+                        hintStyle: GoogleFonts.vt323(fontSize: 20),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                      ),
+                      cursorColor: Colors.black,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.vt323(fontSize: 20),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Enter phone number with country code',
+                        hintStyle: GoogleFonts.vt323(fontSize: 20),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                      ),
+                      cursorColor: Colors.black,
+                      //keyboardType: TextInputType.number,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.vt323(fontSize: 20),
+                      onChanged: (value) {
+                        this.phoneNo = value;
+                      },
+                    ),
+                    SizedBox(height: 10.0),
+                    FlatButton(
+                      onPressed: verifyPhone,
+                      child: Text(
+                        'Verify',
+                        style: GoogleFonts.vt323(fontSize: 22),
+                      ),
+                      textColor: Colors.white,
+                      color: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        side: BorderSide(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              TextField(
-                decoration: InputDecoration(hintText: 'Enter phone number with country code'),
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  this.phoneNo = value;
-                },
-              ),
-              SizedBox(height: 10.0),
-              RaisedButton(
-                  onPressed: verifyPhone,
-                  child: Text('Verify'),
-                  textColor: Colors.white,
-                  elevation: 7.0,
-                  color: Colors.black),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
