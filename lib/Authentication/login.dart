@@ -58,6 +58,10 @@ class _LoginScreenState extends State<LoginScreen> {
     final PhoneVerificationCompleted verifiedSuccess =
         (AuthCredential credential) {
       print('Verified!');
+      Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new Dashboard()),
+      );
     };
 
     final PhoneVerificationFailed veriFailed = (AuthException exception) {
@@ -79,7 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return new AlertDialog(
-            title: Text('Enter OTP', style: GoogleFonts.vt323(fontSize: 25),),
+            title: Text(
+              'Enter OTP',
+              style: GoogleFonts.vt323(fontSize: 25),
+            ),
             content: TextField(
               keyboardType: TextInputType.number,
               onChanged: (value) {
@@ -89,7 +96,10 @@ class _LoginScreenState extends State<LoginScreen> {
             contentPadding: EdgeInsets.all(10.0),
             actions: <Widget>[
               new FlatButton(
-                child: Text('Done!', style: GoogleFonts.vt323(fontSize: 25,color: Colors.black),),
+                child: Text(
+                  'Done!',
+                  style: GoogleFonts.vt323(fontSize: 25, color: Colors.black),
+                ),
                 onPressed: () {
                   FirebaseAuth.instance.currentUser().then((user) {
                     if (user != null) {
@@ -110,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
         });
   }
 
-  bool _pressed  = false;
+  bool _pressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -184,10 +194,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
-                          hintText: 'Enter Unique ID',
-                          border: OutlineInputBorder(),
+                        hintText: 'Enter Unique ID',
+                        border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black, width: 2.0),
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 2.0),
                         ),
                       ),
                       textAlign: TextAlign.left,
@@ -202,7 +213,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: 'Enter phone number and country code',
                           border: OutlineInputBorder(),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black, width: 2.0),
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 2.0),
                           )),
                       textAlign: TextAlign.left,
                       onChanged: (value) {
@@ -231,10 +243,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: FlatButton(
                         //highlightColor: Colors.black,
-                          onPressed: verifyPhone,
-                          child: Text('Verify', style: GoogleFonts.vt323(fontSize: 20),),
-                          textColor: _pressed ? Colors.white : Colors.black,
-                          color: _pressed ? Colors.black : Colors.white),
+                        onPressed: verifyPhone,
+                        child: Text(
+                          'Verify',
+                          style: GoogleFonts.vt323(fontSize: 20),
+                        ),
+                        textColor: _pressed ? Colors.white : Colors.black,
+                        color: _pressed ? Colors.black : Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
                     ),
                   ],
                 ),

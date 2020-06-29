@@ -1,6 +1,8 @@
+import 'package:DartSmart/Dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class NewArticle extends StatelessWidget {
   @override
@@ -17,8 +19,10 @@ class ArticleEntry extends StatefulWidget {
 }
 
 class _ArticleEntryState extends State<ArticleEntry> {
-
-  String name, title, description;
+  String name, occupation, title, description;
+  bool _pressed = false;
+  final databaseReference = Firestore.instance;
+  int flag = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -56,43 +60,173 @@ class _ArticleEntryState extends State<ArticleEntry> {
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            TextField(
-              style: GoogleFonts.vt323(fontSize: 20),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: 'Enter Fullname',
-                border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black, width: 2.0),
+            Center(
+              child: Container(
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(height: 7),
+                    TextField(
+                      style: GoogleFonts.vt323(fontSize: 20),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: 'Enter Fullname',
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 2.0),
+                        ),
+                      ),
+                      textAlign: TextAlign.left,
+                      onChanged: (text) {
+                        this.name = text;
+                      },
+                    ),
+                    SizedBox(height: 7),
+                    TextField(
+                      style: GoogleFonts.vt323(fontSize: 20),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: 'Enter Occupation',
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 2.0),
+                        ),
+                      ),
+                      textAlign: TextAlign.left,
+                      onChanged: (text) {
+                        this.occupation = text;
+                      },
+                    ),
+                    SizedBox(height: 7),
+                    TextField(
+                      style: GoogleFonts.vt323(fontSize: 20),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: 'Enter Title',
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 2.0),
+                        ),
+                      ),
+                      textAlign: TextAlign.left,
+                      onChanged: (text) {
+                        this.title = text;
+                      },
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      maxLines: 50,
+                      minLines: 1,
+                      style: GoogleFonts.vt323(fontSize: 20),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: 'Your Article here!',
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 2.0),
+                        ),
+                      ),
+                      textAlign: TextAlign.left,
+                      onChanged: (text) {
+                        this.description = text;
+                      },
+                    ),
+                    SizedBox(height: 10),
+                    GestureDetector(
+                      onTapDown: (TapDownDetails details) {
+                        setState(() {
+                          _pressed = true;
+                          print(_pressed);
+                        });
+                      },
+                      onTapUp: (TapUpDetails details) {
+                        setState(() {
+                          _pressed = false;
+                          print(_pressed);
+                        });
+                      },
+                      onTapCancel: () {
+                        setState(() {
+                          _pressed = false;
+                          print(_pressed);
+                        });
+                      },
+                      child: FlatButton(
+                        //highlightColor: Colors.black,
+                        onPressed: () {
+                          _post();
+                        },
+                        child: Text(
+                          'Post',
+                          style: GoogleFonts.vt323(fontSize: 20),
+                        ),
+                        textColor: _pressed ? Colors.white : Colors.black,
+                        color: _pressed ? Colors.black : Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              textAlign: TextAlign.left,
-              onChanged: (text) {
-                this.name = text;
-              },
-            ),
-            SizedBox(height: 10),
-            TextField(
-              style: GoogleFonts.vt323(fontSize: 20),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: 'Enter Occupation',
-                border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black, width: 2.0),
-                ),
-              ),
-              textAlign: TextAlign.left,
-              onChanged: (text) {
-                this.title = text;
-              },
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _post() async {
+    await databaseReference.collection("articles").document().setData({
+      'description': description,
+      'name': name,
+      'occupation': occupation,
+      'title': title,
+    });
+
+    flag = 1;
+    _postSuccess();
+  }
+
+  void _postSuccess() {
+    if (flag == 1) {
+      //Toast
+      Fluttertoast.showToast(
+        msg: "Posted Successfully!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 12.0,
+      );
+      Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new Dashboard()),
+      );
+
+      flag = 0;
+    } else {
+      //Toast
+      Fluttertoast.showToast(
+        msg: "Unable to post, please try again!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 12.0,
+      );
+    }
   }
 }
