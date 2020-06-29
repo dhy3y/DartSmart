@@ -1,16 +1,19 @@
-# DartSmart
+# COVFeed
+## by DartSmart
 
-A new Flutter project.
+### About the app:
+COVFeed is a mobile application that serves as a semi-news platform. This app is for sharing the current scenario of an area/region by the doctors, nurses and the health-care workers of that region.
 
-## Getting Started
+This app has a home page with two options:
+1. Feed
+2. login page
 
-This project is a starting point for a Flutter application.
+Feed: This has all the articles written by the doctors, nurses and the health-care workers.
+Login page: This allows only the people related to the medical field to login into the app.
 
-A few resources to get you started if this is your first Flutter project:
+The login is regulated by:
+1. A unique ID which only the health-care workers have. Our database haas a list of all the IDs.
+2. Phone number verification through OTP.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+One of the benefits of our app is that it will allow the health-care workers to share their experience and information they want common people to know.
+Since only they are allowed to post on the app, there will be negligible spamming!
