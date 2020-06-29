@@ -1,3 +1,4 @@
+import 'package:DartSmart/Dashboard.dart';
 import 'package:DartSmart/article.dart';
 import 'package:DartSmart/home.dart';
 import 'package:DartSmart/home_feed.dart';
@@ -95,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.push(
                         context,
                         new MaterialPageRoute(
-                            builder: (context) => new HomeFeed()),
+                            builder: (context) => new Dashboard()),
                       );
                     } else {
                       Navigator.of(context).pop();
