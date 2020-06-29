@@ -23,11 +23,13 @@ class _ArticleEntryState extends State<ArticleEntry> {
   bool _pressed = false;
   final databaseReference = Firestore.instance;
   int flag = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Colors.grey[300],
         body: Column(
           children: <Widget>[
@@ -167,13 +169,10 @@ class _ArticleEntryState extends State<ArticleEntry> {
                         },
                         child: Text(
                           'Post',
-                          style: GoogleFonts.vt323(fontSize: 20),
+                          style: GoogleFonts.vt323(fontSize: 25),
                         ),
                         textColor: _pressed ? Colors.white : Colors.black,
                         color: _pressed ? Colors.black : Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
                       ),
                     ),
                   ],
@@ -200,7 +199,6 @@ class _ArticleEntryState extends State<ArticleEntry> {
 
   void _postSuccess() {
     if (flag == 1) {
-      //Toast
       Fluttertoast.showToast(
         msg: "Posted Successfully!",
         toastLength: Toast.LENGTH_SHORT,
@@ -217,7 +215,6 @@ class _ArticleEntryState extends State<ArticleEntry> {
 
       flag = 0;
     } else {
-      //Toast
       Fluttertoast.showToast(
         msg: "Unable to post, please try again!",
         toastLength: Toast.LENGTH_SHORT,

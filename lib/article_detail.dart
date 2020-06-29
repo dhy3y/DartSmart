@@ -80,9 +80,17 @@ class _ArticleDetailState extends State<ArticleDetail> {
                             '(by ${widget.article.data['name']})',
                             style: TextStyle(
                               fontFamily: 'Subway',
-                              fontSize: 20,
+                              fontSize: 25,
                             ),
                             textAlign: TextAlign.left,
+                          ),
+                          Text(
+                            '[${widget.article.data['occupation']}]',
+                            style: TextStyle(
+                              fontFamily: 'Chenier',
+                              fontSize: 20,
+                            ),
+                            textAlign: TextAlign.justify,
                           ),
                           Image.asset('assets/images/divider.png'),
                           Text(

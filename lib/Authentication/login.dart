@@ -246,13 +246,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: verifyPhone,
                         child: Text(
                           'Verify',
-                          style: GoogleFonts.vt323(fontSize: 20),
+                          style: GoogleFonts.vt323(fontSize: 25),
                         ),
                         textColor: _pressed ? Colors.white : Colors.black,
                         color: _pressed ? Colors.black : Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
                       ),
                     ),
                   ],

@@ -180,7 +180,7 @@ class _HomeFeedState extends State<HomeFeed> {
                                                 GoogleFonts.vt323(fontSize: 30),
                                           ),
                                           Text(
-                                            'By ${snapshot.data[index].data['name']}',
+                                            'By ${snapshot.data[index].data['name']} [${snapshot.data[index].data['occupation']}]',
                                             style:
                                                 GoogleFonts.vt323(fontSize: 20),
                                           ),
