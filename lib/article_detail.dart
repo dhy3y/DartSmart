@@ -54,48 +54,50 @@ class _ArticleDetailState extends State<ArticleDetail> {
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/backg.jpg"),
-                  fit: BoxFit.cover,
+                  image: AssetImage("assets/images/atricle_back.png"),
+                  fit: BoxFit.fill,
                 ),
-                border: Border.all(color: Colors.black, width: 5),
+                //border: Border.all(color: Colors.black, width: 5),
               ),
               child: Container(
                 height: MediaQuery.of(context).size.height/1.2,
-                child: SingleChildScrollView(
-                  child: Container(
+                child: Container(
+                    height: MediaQuery.of(context).size.height/1.5,
                     margin:
-                        EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          widget.article.data['title'].toUpperCase(),
-                          style: TextStyle(
-                            fontFamily: 'Subway',
-                            fontSize: 35,
+                        EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 100,),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            widget.article.data['title'].toUpperCase(),
+                            style: TextStyle(
+                              fontFamily: 'Subway',
+                              fontSize: 35,
+                            ),
+                            textAlign: TextAlign.left,
                           ),
-                          textAlign: TextAlign.left,
-                        ),
-                        Text(
-                          '(by ${widget.article.data['name']})',
-                          style: TextStyle(
-                            fontFamily: 'Subway',
-                            fontSize: 20,
+                          Text(
+                            '(by ${widget.article.data['name']})',
+                            style: TextStyle(
+                              fontFamily: 'Subway',
+                              fontSize: 20,
+                            ),
+                            textAlign: TextAlign.left,
                           ),
-                          textAlign: TextAlign.left,
-                        ),
-                        Image.asset('assets/images/divider.png'),
-                        Text(
-                          widget.article.data['description'],
-                          style: TextStyle(
-                            fontFamily: 'Chenier',
-                            fontSize: 25,
+                          Image.asset('assets/images/divider.png'),
+                          Text(
+                            widget.article.data['description'],
+                            style: TextStyle(
+                              fontFamily: 'Chenier',
+                              fontSize: 25,
+                            ),
+                            textAlign: TextAlign.justify,
                           ),
-                          textAlign: TextAlign.justify,
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                
               ),
             ),
           ],
