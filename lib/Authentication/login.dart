@@ -1,7 +1,4 @@
 import 'package:DartSmart/Dashboard.dart';
-import 'package:DartSmart/article.dart';
-import 'package:DartSmart/home.dart';
-import 'package:DartSmart/home_feed.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
