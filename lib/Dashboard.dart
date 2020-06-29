@@ -50,11 +50,12 @@ class Dashboard extends StatelessWidget {
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black)),
                         child: FlatButton(
-                          onPressed: () =>
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => NewArticle())
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NewArticle(),
                             ),
+                          ),
                           padding: EdgeInsets.all(10.0),
                           child: Container(
                             padding: EdgeInsets.symmetric(
