@@ -54,6 +54,7 @@ flutter:
     - assets/images/title-lines.png
     - assets/images/feed.png
     - assets/images/login.png
+    - assets/images/phone_logo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

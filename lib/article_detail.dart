@@ -49,8 +49,9 @@ class _ArticleDetailState extends State<ArticleDetail> {
                 ),
               ],
             ),
+            Divider(thickness: 2, color: Colors.black,),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/images/backg.jpg"),

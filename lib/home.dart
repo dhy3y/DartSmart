@@ -87,6 +87,7 @@ class Home extends StatelessWidget {
                 ),
               ],
             ),
+            Divider(thickness: 2, color: Colors.black,),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

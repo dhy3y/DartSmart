@@ -3,6 +3,7 @@ import 'package:DartSmart/home.dart';
 import 'package:DartSmart/home_feed.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -77,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return new AlertDialog(
-            title: Text('Enter OTP'),
+            title: Text('Enter OTP', style: GoogleFonts.vt323(fontSize: 25),),
             content: TextField(
               keyboardType: TextInputType.number,
               onChanged: (value) {
@@ -87,12 +88,15 @@ class _LoginScreenState extends State<LoginScreen> {
             contentPadding: EdgeInsets.all(10.0),
             actions: <Widget>[
               new FlatButton(
-                child: Text('Done!'),
+                child: Text('Done!', style: GoogleFonts.vt323(fontSize: 25,color: Colors.black),),
                 onPressed: () {
                   FirebaseAuth.instance.currentUser().then((user) {
                     if (user != null) {
-                      Navigator.push(context, new MaterialPageRoute(builder: (context) => new HomeFeed()),
-              );
+                      Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new HomeFeed()),
+                      );
                     } else {
                       Navigator.of(context).pop();
                       signIn();
@@ -105,50 +109,137 @@ class _LoginScreenState extends State<LoginScreen> {
         });
   }
 
+  bool _pressed  = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: new AppBar(
-        title: new Text('Authentication'),
-        backgroundColor: Colors.black,
-        leading: IconButton(
-          icon:const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.push(
-              context,
-              new MaterialPageRoute(builder: (context) => new Home()),
-            );
-          },
-        )
-      ),
-      
-      body: new Center(
-        child: Container(
-          padding: EdgeInsets.all(25.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Icon(Icons.phone_android, size: 150.0, color: Colors.black),
-              TextField(
-                decoration: InputDecoration(hintText: 'Enter Unique ID'),
-                textAlign: TextAlign.center,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.grey[300],
+//      appBar: new AppBar(
+//        title: new Text('Authentication'),
+//        backgroundColor: Colors.black,
+//        leading: IconButton(
+//          icon:const Icon(Icons.arrow_back_ios),
+//          onPressed: () {
+//            Navigator.push(
+//              context,
+//              new MaterialPageRoute(builder: (context) => new Home()),
+//            );
+//          },
+//        )
+//      ),
+        body: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 5,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: Image.asset(
+                    'assets/images/title-lines.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  child: Text(
+                    'Login',
+                    style: GoogleFonts.vt323(fontSize: 40),
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: Image.asset(
+                    'assets/images/title-lines.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+            Divider(
+              thickness: 2,
+              color: Colors.black,
+            ),
+            Center(
+              child: Container(
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    new Container(
+                      height: 200,
+                      child: Image.asset('assets/images/phone_logo.png'),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      style: GoogleFonts.vt323(fontSize: 20),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                          hintText: 'Enter Unique ID',
+                          border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black, width: 2.0),
+                        ),
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      keyboardType: TextInputType.phone,
+                      style: GoogleFonts.vt323(fontSize: 20),
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Enter phone number and country code',
+                          border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black, width: 2.0),
+                          )),
+                      textAlign: TextAlign.left,
+                      onChanged: (value) {
+                        this.phoneNo = value;
+                      },
+                    ),
+                    SizedBox(height: 10.0),
+                    GestureDetector(
+                      onTapDown: (TapDownDetails details) {
+                        setState(() {
+                          _pressed = true;
+                          print(_pressed);
+                        });
+                      },
+                      onTapUp: (TapUpDetails details) {
+                        setState(() {
+                          _pressed = false;
+                          print(_pressed);
+                        });
+                      },
+                      onTapCancel: () {
+                        setState(() {
+                          _pressed = false;
+                          print(_pressed);
+                        });
+                      },
+                      child: FlatButton(
+                        //highlightColor: Colors.black,
+                          onPressed: verifyPhone,
+                          child: Text('Verify', style: GoogleFonts.vt323(fontSize: 20),),
+                          textColor: _pressed ? Colors.white : Colors.black,
+                          color: _pressed ? Colors.black : Colors.white),
+                    ),
+                  ],
+                ),
               ),
-              TextField(
-                decoration: InputDecoration(hintText: 'Enter phone number with country code'),
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  this.phoneNo = value;
-                },
-              ),
-              SizedBox(height: 10.0),
-              RaisedButton(
-                  onPressed: verifyPhone,
-                  child: Text('Verify'),
-                  textColor: Colors.white,
-                  elevation: 7.0,
-                  color: Colors.black),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

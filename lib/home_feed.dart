@@ -140,6 +140,7 @@ class _HomeFeedState extends State<HomeFeed> {
                 ),
               ],
             ),
+            Divider(thickness: 2, color: Colors.black,),
             Expanded(
               child: Container(
                 child: FutureBuilder(
