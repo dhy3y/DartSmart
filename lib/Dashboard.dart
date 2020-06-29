@@ -16,7 +16,7 @@ class Dashboard extends StatelessWidget {
               children: <Widget>[
                 Container(
                   height: 40,
-                  width: MediaQuery.of(context).size.width / 2.8,
+                  width: MediaQuery.of(context).size.width / 4.3,
                   child: Image.asset(
                     'assets/images/title-lines.png',
                     fit: BoxFit.fill,
@@ -31,7 +31,7 @@ class Dashboard extends StatelessWidget {
                 ),
                 Container(
                   height: 40,
-                  width: MediaQuery.of(context).size.width / 2.8,
+                  width: MediaQuery.of(context).size.width / 4.3,
                   child: Image.asset(
                     'assets/images/title-lines.png',
                     fit: BoxFit.fill,
@@ -65,7 +65,7 @@ class Dashboard extends StatelessWidget {
                                 Image.asset('assets/images/feed.png'),
                                 Text(
                                   "New Entry",
-                                  style: GoogleFonts.vt323(fontSize: 40),
+                                  style: GoogleFonts.vt323(fontSize: 30),
                                 )
                               ],
                             ),
@@ -89,7 +89,7 @@ class Dashboard extends StatelessWidget {
                                 Image.asset('assets/images/login.png'),
                                 Text(
                                   "My Articles",
-                                  style: GoogleFonts.vt323(fontSize: 40),
+                                  style: GoogleFonts.vt323(fontSize: 30),
                                 )
                               ],
                             ),

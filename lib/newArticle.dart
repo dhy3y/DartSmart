@@ -33,7 +33,7 @@ class _ArticleEntryState extends State<ArticleEntry> {
               children: <Widget>[
                 Container(
                   height: 40,
-                  width: MediaQuery.of(context).size.width / 2.8,
+                  width: MediaQuery.of(context).size.width / 4.3,
                   child: Image.asset(
                     'assets/images/title-lines.png',
                     fit: BoxFit.fill,
@@ -48,7 +48,7 @@ class _ArticleEntryState extends State<ArticleEntry> {
                 ),
                 Container(
                   height: 40,
-                  width: MediaQuery.of(context).size.width / 2.8,
+                  width: MediaQuery.of(context).size.width / 4.3,
                   child: Image.asset(
                     'assets/images/title-lines.png',
                     fit: BoxFit.fill,
