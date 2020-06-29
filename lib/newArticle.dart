@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class NewArticle extends StatelessWidget {
   @override
@@ -16,14 +17,17 @@ class ArticleEntry extends StatefulWidget {
 }
 
 class _ArticleEntryState extends State<ArticleEntry> {
+
+  String name, title, description;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-         backgroundColor: Colors.grey[300],
-         body: Column(
-           children: <Widget>[
-             Row(
+        backgroundColor: Colors.grey[300],
+        body: Column(
+          children: <Widget>[
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               //crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -52,8 +56,42 @@ class _ArticleEntryState extends State<ArticleEntry> {
                 ),
               ],
             ),
-           ],
-         ),
+            SizedBox(height: 10),
+            TextField(
+              style: GoogleFonts.vt323(fontSize: 20),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                hintText: 'Enter Fullname',
+                border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black, width: 2.0),
+                ),
+              ),
+              textAlign: TextAlign.left,
+              onChanged: (text) {
+                this.name = text;
+              },
+            ),
+            SizedBox(height: 10),
+            TextField(
+              style: GoogleFonts.vt323(fontSize: 20),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                hintText: 'Enter Occupation',
+                border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black, width: 2.0),
+                ),
+              ),
+              textAlign: TextAlign.left,
+              onChanged: (text) {
+                this.title = text;
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
